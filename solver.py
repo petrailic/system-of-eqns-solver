@@ -2,7 +2,7 @@
 
 from yacc import *
 import augmentor
-import gaus
+import gauss
 
 def solve_system_of_eq(s):
     '''
@@ -17,6 +17,6 @@ def solve_system_of_eq(s):
     matrix, var = augmentor.augment(parsed)
 
     # solve augmented matrix with gaussian elimination
-    sol = gaus.solve_matrix(matrix, var)
+    sol = gauss.solve_matrix(matrix, var)
 
     return sol

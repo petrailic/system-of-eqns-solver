@@ -3,6 +3,7 @@
 from logging import Logger
 import ply.yacc as yacc
 from eqnlex import tokens
+from exceptions import InputSyntaxErrorException
 
 def p_system(p):
     '''system : equation
@@ -66,7 +67,7 @@ def p_factor(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    raise InputSyntaxErrorException
 
 parser = yacc.yacc()
 

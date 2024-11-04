@@ -1,0 +1,288 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> system
+Rule 1     system -> equation
+Rule 2     system -> system NEWLINE equation
+Rule 3     equation -> expression EQUALS NUMBER
+Rule 4     expression -> term
+Rule 5     expression -> expression term
+Rule 6     term -> VARIABLE
+Rule 7     term -> PLUS VARIABLE
+Rule 8     term -> MINUS VARIABLE
+Rule 9     term -> factor VARIABLE
+Rule 10    term -> factor MULTIPLY VARIABLE
+Rule 11    factor -> NUMBER
+Rule 12    factor -> PLUS NUMBER
+Rule 13    factor -> MINUS NUMBER
+
+Terminals, with rules where they appear
+
+EQUALS               : 3
+MINUS                : 8 13
+MULTIPLY             : 10
+NEWLINE              : 2
+NUMBER               : 3 11 12 13
+PLUS                 : 7 12
+VARIABLE             : 6 7 8 9 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+equation             : 1 2
+expression           : 3 5
+factor               : 9 10
+system               : 2 0
+term                 : 4 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . system
+    (1) system -> . equation
+    (2) system -> . system NEWLINE equation
+    (3) equation -> . expression EQUALS NUMBER
+    (4) expression -> . term
+    (5) expression -> . expression term
+    (6) term -> . VARIABLE
+    (7) term -> . PLUS VARIABLE
+    (8) term -> . MINUS VARIABLE
+    (9) term -> . factor VARIABLE
+    (10) term -> . factor MULTIPLY VARIABLE
+    (11) factor -> . NUMBER
+    (12) factor -> . PLUS NUMBER
+    (13) factor -> . MINUS NUMBER
+
+    VARIABLE        shift and go to state 6
+    PLUS            shift and go to state 7
+    MINUS           shift and go to state 8
+    NUMBER          shift and go to state 4
+
+    system                         shift and go to state 1
+    equation                       shift and go to state 2
+    expression                     shift and go to state 3
+    term                           shift and go to state 5
+    factor                         shift and go to state 9
+
+state 1
+
+    (0) S' -> system .
+    (2) system -> system . NEWLINE equation
+
+    NEWLINE         shift and go to state 10
+
+
+state 2
+
+    (1) system -> equation .
+
+    NEWLINE         reduce using rule 1 (system -> equation .)
+    $end            reduce using rule 1 (system -> equation .)
+
+
+state 3
+
+    (3) equation -> expression . EQUALS NUMBER
+    (5) expression -> expression . term
+    (6) term -> . VARIABLE
+    (7) term -> . PLUS VARIABLE
+    (8) term -> . MINUS VARIABLE
+    (9) term -> . factor VARIABLE
+    (10) term -> . factor MULTIPLY VARIABLE
+    (11) factor -> . NUMBER
+    (12) factor -> . PLUS NUMBER
+    (13) factor -> . MINUS NUMBER
+
+    EQUALS          shift and go to state 11
+    VARIABLE        shift and go to state 6
+    PLUS            shift and go to state 7
+    MINUS           shift and go to state 8
+    NUMBER          shift and go to state 4
+
+    term                           shift and go to state 12
+    factor                         shift and go to state 9
+
+state 4
+
+    (11) factor -> NUMBER .
+
+    VARIABLE        reduce using rule 11 (factor -> NUMBER .)
+    MULTIPLY        reduce using rule 11 (factor -> NUMBER .)
+
+
+state 5
+
+    (4) expression -> term .
+
+    EQUALS          reduce using rule 4 (expression -> term .)
+    VARIABLE        reduce using rule 4 (expression -> term .)
+    PLUS            reduce using rule 4 (expression -> term .)
+    MINUS           reduce using rule 4 (expression -> term .)
+    NUMBER          reduce using rule 4 (expression -> term .)
+
+
+state 6
+
+    (6) term -> VARIABLE .
+
+    EQUALS          reduce using rule 6 (term -> VARIABLE .)
+    VARIABLE        reduce using rule 6 (term -> VARIABLE .)
+    PLUS            reduce using rule 6 (term -> VARIABLE .)
+    MINUS           reduce using rule 6 (term -> VARIABLE .)
+    NUMBER          reduce using rule 6 (term -> VARIABLE .)
+
+
+state 7
+
+    (7) term -> PLUS . VARIABLE
+    (12) factor -> PLUS . NUMBER
+
+    VARIABLE        shift and go to state 13
+    NUMBER          shift and go to state 14
+
+
+state 8
+
+    (8) term -> MINUS . VARIABLE
+    (13) factor -> MINUS . NUMBER
+
+    VARIABLE        shift and go to state 15
+    NUMBER          shift and go to state 16
+
+
+state 9
+
+    (9) term -> factor . VARIABLE
+    (10) term -> factor . MULTIPLY VARIABLE
+
+    VARIABLE        shift and go to state 17
+    MULTIPLY        shift and go to state 18
+
+
+state 10
+
+    (2) system -> system NEWLINE . equation
+    (3) equation -> . expression EQUALS NUMBER
+    (4) expression -> . term
+    (5) expression -> . expression term
+    (6) term -> . VARIABLE
+    (7) term -> . PLUS VARIABLE
+    (8) term -> . MINUS VARIABLE
+    (9) term -> . factor VARIABLE
+    (10) term -> . factor MULTIPLY VARIABLE
+    (11) factor -> . NUMBER
+    (12) factor -> . PLUS NUMBER
+    (13) factor -> . MINUS NUMBER
+
+    VARIABLE        shift and go to state 6
+    PLUS            shift and go to state 7
+    MINUS           shift and go to state 8
+    NUMBER          shift and go to state 4
+
+    equation                       shift and go to state 19
+    expression                     shift and go to state 3
+    term                           shift and go to state 5
+    factor                         shift and go to state 9
+
+state 11
+
+    (3) equation -> expression EQUALS . NUMBER
+
+    NUMBER          shift and go to state 20
+
+
+state 12
+
+    (5) expression -> expression term .
+
+    EQUALS          reduce using rule 5 (expression -> expression term .)
+    VARIABLE        reduce using rule 5 (expression -> expression term .)
+    PLUS            reduce using rule 5 (expression -> expression term .)
+    MINUS           reduce using rule 5 (expression -> expression term .)
+    NUMBER          reduce using rule 5 (expression -> expression term .)
+
+
+state 13
+
+    (7) term -> PLUS VARIABLE .
+
+    EQUALS          reduce using rule 7 (term -> PLUS VARIABLE .)
+    VARIABLE        reduce using rule 7 (term -> PLUS VARIABLE .)
+    PLUS            reduce using rule 7 (term -> PLUS VARIABLE .)
+    MINUS           reduce using rule 7 (term -> PLUS VARIABLE .)
+    NUMBER          reduce using rule 7 (term -> PLUS VARIABLE .)
+
+
+state 14
+
+    (12) factor -> PLUS NUMBER .
+
+    VARIABLE        reduce using rule 12 (factor -> PLUS NUMBER .)
+    MULTIPLY        reduce using rule 12 (factor -> PLUS NUMBER .)
+
+
+state 15
+
+    (8) term -> MINUS VARIABLE .
+
+    EQUALS          reduce using rule 8 (term -> MINUS VARIABLE .)
+    VARIABLE        reduce using rule 8 (term -> MINUS VARIABLE .)
+    PLUS            reduce using rule 8 (term -> MINUS VARIABLE .)
+    MINUS           reduce using rule 8 (term -> MINUS VARIABLE .)
+    NUMBER          reduce using rule 8 (term -> MINUS VARIABLE .)
+
+
+state 16
+
+    (13) factor -> MINUS NUMBER .
+
+    VARIABLE        reduce using rule 13 (factor -> MINUS NUMBER .)
+    MULTIPLY        reduce using rule 13 (factor -> MINUS NUMBER .)
+
+
+state 17
+
+    (9) term -> factor VARIABLE .
+
+    EQUALS          reduce using rule 9 (term -> factor VARIABLE .)
+    VARIABLE        reduce using rule 9 (term -> factor VARIABLE .)
+    PLUS            reduce using rule 9 (term -> factor VARIABLE .)
+    MINUS           reduce using rule 9 (term -> factor VARIABLE .)
+    NUMBER          reduce using rule 9 (term -> factor VARIABLE .)
+
+
+state 18
+
+    (10) term -> factor MULTIPLY . VARIABLE
+
+    VARIABLE        shift and go to state 21
+
+
+state 19
+
+    (2) system -> system NEWLINE equation .
+
+    NEWLINE         reduce using rule 2 (system -> system NEWLINE equation .)
+    $end            reduce using rule 2 (system -> system NEWLINE equation .)
+
+
+state 20
+
+    (3) equation -> expression EQUALS NUMBER .
+
+    NEWLINE         reduce using rule 3 (equation -> expression EQUALS NUMBER .)
+    $end            reduce using rule 3 (equation -> expression EQUALS NUMBER .)
+
+
+state 21
+
+    (10) term -> factor MULTIPLY VARIABLE .
+
+    EQUALS          reduce using rule 10 (term -> factor MULTIPLY VARIABLE .)
+    VARIABLE        reduce using rule 10 (term -> factor MULTIPLY VARIABLE .)
+    PLUS            reduce using rule 10 (term -> factor MULTIPLY VARIABLE .)
+    MINUS           reduce using rule 10 (term -> factor MULTIPLY VARIABLE .)
+    NUMBER          reduce using rule 10 (term -> factor MULTIPLY VARIABLE .)
+

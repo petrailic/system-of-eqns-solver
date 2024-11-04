@@ -1,11 +1,16 @@
 import unittest
 from solver import solve_system_of_eq
-from exceptions import MultipleSolException, NoSolException
+from exceptions import MultipleSolException, NoSolException, InputSyntaxErrorException
 
 class TestingSolveSystemOfEq(unittest.TestCase):
     def test_solver_1_eq(self):
         self.assertEqual(solve_system_of_eq('2x = 5'),
                          {'x': 5/2})
+
+    def test_solver_2_eq(self):
+        self.assertEqual(solve_system_of_eq('''x = 5
+                                                z = 6'''),
+                         {'x': 5, 'z':6})
 
     def test_solver_3_eq(self):
         a = '''x +3y +2z = 4
@@ -39,3 +44,11 @@ class TestSolveSystemOfEqExceptions(unittest.TestCase):
                x + y + z = 2
                x + y + z = 3'''
         self.assertRaises(NoSolException, solve_system_of_eq, a)
+
+    def test_incorrect_eq_structure(self):
+        a = '''3 + 2x = 1
+               x + y = 4'''
+        self.assertRaises(InputSyntaxErrorException, solve_system_of_eq, a)
+
+    def test_empty(self):
+        self.assertRaises(InputSyntaxErrorException, solve_system_of_eq, '')

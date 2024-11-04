@@ -30,6 +30,15 @@ class TestingYaccManyEq(unittest.TestCase):
                                         2x - 3y = 5'''),
                          [{'x': 2, 'result': 5}, {'y': 3, 'result': 4}, {'x': 2, 'y': -3, 'result': 5}])
 
+class TestingYaccExceptions(unittest.TestCase):
+    def test_incorrect_structure(self):
+        a = '''2 + y = 4
+               2x + 2y = 2'''
+        self.assertRaises(InputSyntaxErrorException, parser.parse, a)
+
+    def test_empty(self):
+        self.assertRaises(InputSyntaxErrorException, parser.parse, '')
+
 class TestingAugmentor(unittest.TestCase):
     def test_aug_1_eq(self):
         self.assertEqual(augment([{'x': 2, 'result': 5}]), ([[2., 5.]], ['x', 'result']))
