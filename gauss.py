@@ -2,6 +2,7 @@
 
 import exceptions
 from exceptions import MultipleSolException, NoSolException
+from show import show_matrix
 
 # Elementary Row Operations
 
@@ -28,7 +29,7 @@ def row_swap(m, row_a, row_b):
 
 def row_sum(m, row_a, row_b, s=1):
     """
-    Adding a multiple of row_a to row_b
+    Adding a scaled multiple of row_a to row_b
 
     :param m: matrix
     :param row_a: (int) row index value
@@ -52,26 +53,30 @@ def row_reduce(m):
     row_pos = 0
     while row_pos < len(m) and lead1pos < len(m):
 
-        # find non-zero leading value and move it to the "top"
-        if m[row_pos][lead1pos] != 0:
-            row_swap(m, row_pos, lead1pos)
+        # find non-zero leading value
+        if m[row_pos][lead1pos] == 0:
+            row_pos += 1
+            continue
 
-            # scale row with non-zero leading value to have pivotal 1
-            scaler = 1 / m[lead1pos][lead1pos]
-            row_scale(m, lead1pos, scaler)
+        # move non-zero leading value to the "top"
+        row_swap(m, row_pos, lead1pos)
 
-            # clear out non-zero values above and below the pivotal 1
-            for i in range(0, len(m)):
-                if i != lead1pos and m[i][lead1pos] != 0:
-                    s = m[i][lead1pos]
-                    row_sum(m, lead1pos, i, -1 * s)
+        # scale row with non-zero leading value to have pivotal 1
+        scaler = 1 / m[lead1pos][lead1pos]
+        row_scale(m, lead1pos, scaler)
 
-            # move on to next leading one position
-            lead1pos += 1
-            row_pos = lead1pos
+        # clear out non-zero values above and below the pivotal 1
+        for i in range(0, len(m)):
+            if i != lead1pos and m[i][lead1pos] != 0:
+                s = m[i][lead1pos]
+                row_sum(m, lead1pos, i, -1 * s)
 
-        else:
-            row_pos+=1
+        # move on to next leading one position
+        lead1pos += 1
+        row_pos = lead1pos
+
+        # showing modified matrix steps
+        show_matrix(m)
 
     return m
 
