@@ -1,6 +1,6 @@
 # Displaying matrices nicely
 
-def show_matrix(m):
+def show_matrix(m: list):
     '''
     Nicely prints matrix
     :param m: augmented matrix

@@ -1,9 +1,8 @@
 # Augmentor function for interpreting parser output
 
-from yacc import *
 import numpy as np
 
-def augment(lyst):
+def augment(lyst: list):
     '''
     Creates matrix representation of valid system of equations and descriptive variable array
     :param lyst: list of dictionaries where each dictionary represents a linear equation;

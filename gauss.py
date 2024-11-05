@@ -6,7 +6,7 @@ from show import show_matrix
 
 # Elementary Row Operations
 
-def row_scale(m, r, s):
+def row_scale(m: list, r: int, s: float):
     """
     Multiplying matrix row by a constant s
 
@@ -16,7 +16,7 @@ def row_scale(m, r, s):
     """
     m[r] = [x * s for x in m[r]]
 
-def row_swap(m, row_a, row_b):
+def row_swap(m: list, row_a: int, row_b: int):
     """
     Exchanging two rows of a matrix
 
@@ -26,8 +26,7 @@ def row_swap(m, row_a, row_b):
     """
     m[row_a], m[row_b] = m[row_b], m[row_a]
 
-
-def row_sum(m, row_a, row_b, s=1):
+def row_sum(m: list, row_a: int, row_b: int, s: float = 1):
     """
     Adding a scaled multiple of row_a to row_b
 
@@ -39,9 +38,8 @@ def row_sum(m, row_a, row_b, s=1):
     for i in range(len(m[row_a])):
        m[row_b][i] += m[row_a][i] * s
 
-
 # Gaussian Elimination
-def row_reduce(m):
+def row_reduce(m: list):
     '''
     Converts matrix into reduced row echelon from (RREF)
 
@@ -80,7 +78,7 @@ def row_reduce(m):
 
     return m
 
-def has_zero_col(m):
+def has_zero_col(m: list):
     '''
     :param m: matrix
     :return: (boolean) True if matrix m has zero column in any but last column,
@@ -94,13 +92,13 @@ def has_zero_col(m):
                 return True
     return False
 
-def has_zero_equals_nonzero(m):
+def has_zero_equals_nonzero(m: list):
     for r in m:
         if r[:-1] == [0] * (len(m[0]) -1) and r[-1] != 0:
             return True
     return False
 
-def solve_matrix(m, var):
+def solve_matrix(m: list, var: list):
     '''
     Solves a matrix
     :param m: augmented matrix

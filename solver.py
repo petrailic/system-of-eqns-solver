@@ -4,7 +4,7 @@ from yacc import *
 import augmentor
 import gauss
 
-def solve_system_of_eq(s):
+def solve_system_of_eq(s: str):
     '''
     Parses and solves systems of equations with one solution, raises error if system has multiple or no solutions
     :param s: string representation of system of equations (each equation is on a new line)

@@ -1,7 +1,4 @@
 from eqnlex import *
-from yacc import *
-from augmentor import*
-from gauss import *
 from solver import *
 
 # examining tokens example
