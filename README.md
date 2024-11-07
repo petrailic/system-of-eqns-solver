@@ -1,7 +1,7 @@
 # System of Equations Solver
 This project implements linear algebra principles along with a parser to solve systems of equations provided in string form.
 
-### Example Performed on a 10 x 10 System
+### Example Performed on a 5 x 5 System
 
 Input:
 ```
