@@ -12,7 +12,7 @@ Input:
     v + 2z + x + y + w = 8'''
 ```
 
-This string is analyzed and parsed into a list of dictionaries, then converted into an augmented matrix representing the system. The row_reduce function reduces the matrix into Reduced Row-Echelon Form (RREF). Below are the steps of this matrix's reduction:
+The input string is parsed and converted into an augmented matrix representing the system. The row_reduce function uses Gaussian elimination to get the matrix into Reduced Row-Echelon Form (RREF). Below are the steps of this matrix's reduction:
 
 Step 1 - First pivotal 1:
 <p align="center">
